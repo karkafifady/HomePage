@@ -13,6 +13,94 @@ section
 	background: #042104;
 	animation: animateColor 8s linear infinite;
 }
+section .clock
+{
+    width: 150px;
+    height: 150px;
+    z-index: 1;
+    right:2%;
+    top:2%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("clock.png");
+    background-size: cover;
+    border: 4px solid #061116;
+    border-radius: 50%;
+    box-shadow: 0 -15px 15px rgba(255,255,255,0.05),
+                inset 0 -15px 15px rgba(255,255,255,0.05),
+                0 15px 15px rgba(0,0,0,0.3),
+                inset 0 15px 15px rgba(0,0,0,0.3);
+}
+section .clock:before
+{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 10000;
+}
+section .clock .hour,
+section .clock .min,
+section .clock .sec
+{
+    position: absolute;
+}
+section .clock .hour, .hr
+{
+    width: 90px;
+    height: 90px;
+}
+section .clock .min, .mn
+{
+    width: 120px;
+    height: 120px;
+}
+section .clock .sec, .sc
+{
+    width: 150px;
+    height: 150px;
+}
+section .hr, .mn, .sc
+{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-radius: 50%;
+}
+section .hr:before
+{
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 60px;
+    background: #ff105e;
+    z-index: 10;
+    border-radius: 6px 6px 0 0;
+}
+section .mn:before
+{
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 80px;
+    background: #fff;
+    z-index: 11;
+    border-radius: 6px 6px 0 0;
+}
+section .sc:before
+{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 130px;
+    background: #fff;
+    z-index: 12;
+    border-radius: 6px 6px 0 0;
+}
 @keyframes animateColor
 {
 	0%
@@ -27,13 +115,16 @@ section
 section .container
 {
 	display: flex;
+	right: 2%;
+	bottom: 2%;	
+	position: fixed;
 }
 section .container .circle
 {
 	position: relative;
-	width: 150px;
-	height: 150px;
-	margin: 0 -7.5px;
+	width: 50px;
+	height: 50px;
+	margin: 0 -5px;
 }
 section .container .circle span
 {
@@ -50,11 +141,11 @@ section .container .circle span::before
 	content: '';
 	position: absolute;
 	right: 0;
-	top: calc(50% - 7.5px);
-	width: 15px;
-	height: 15px;
+	top: calc(50% - 5px);
+	width: 10px;
+	height: 10px;
 	background: #00ff0a;
-	border-radius: 50%;
+	border-radius: 100%;
 	box-shadow: 0 0 10px #00ff0a,
 	0 0 20px #00ff0a,
 	0 0 40px #00ff0a,
