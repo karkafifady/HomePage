@@ -1,42 +1,59 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Fady Karkafi</title>
-        <link rel="stylesheet" href="clock.css">
-    </head>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+</head>
 <body>
-
-    <top>
-        <div class="clock">
-            <img src="clock.png" width="100%">
-            <div class="hour">
-                <div class="hr" id="hr"></div>
-            </div>
-            <div class="min">
-                <div class="mn" id="mn"></div>
-            </div>
-            <div class="sec">
-                <div class="sc" id="sc"></div>
-            </div>
-        </div>
-        <script type="text/javascript">
-        const deg = 6;
-        const hr = document.querySelector('#hr');
-        const mn = document.querySelector('#mn');
-        const sc = document.querySelector('#sc');
-    
-        setInterval(()  => {
-        let day = new Date();
-        let hh = day.getHours() * 30;
-        let mm = day.getMinutes() * deg;
-        let ss = day.getSeconds() * deg;
-    
-        hr.style.transform = `rotate(${(hh)+(mm/12)}deg)`;
-        mn.style.transform = `rotate(${mm}deg)`;
-        sc.style.transform = `rotate(${ss}deg)`;
-        })
-        </script>
-    </top>
+	<section>
+		<div class="container">
+			<div class="circle">
+				<span style="--i:0;"></span>
+				<span style="--i:1;"></span>
+				<span style="--i:2;"></span>
+				<span style="--i:3;"></span>
+				<span style="--i:4;"></span>
+				<span style="--i:5;"></span>
+				<span style="--i:6;"></span>
+				<span style="--i:7;"></span>
+				<span style="--i:8;"></span>
+				<span style="--i:9;"></span>
+				<span style="--i:10;"></span>
+				<span style="--i:11;"></span>
+				<span style="--i:12;"></span>
+				<span style="--i:13;"></span>
+				<span style="--i:14;"></span>
+				<span style="--i:15;"></span>
+				<span style="--i:16;"></span>
+				<span style="--i:17;"></span>
+				<span style="--i:18;"></span>
+				<span style="--i:19;"></span>
+				<span style="--i:20;"></span>
+			</div>
+			<div class="circle">
+				<span style="--i:0;"></span>
+				<span style="--i:1;"></span>
+				<span style="--i:2;"></span>
+				<span style="--i:3;"></span>
+				<span style="--i:4;"></span>
+				<span style="--i:5;"></span>
+				<span style="--i:6;"></span>
+				<span style="--i:7;"></span>
+				<span style="--i:8;"></span>
+				<span style="--i:9;"></span>
+				<span style="--i:10;"></span>
+				<span style="--i:11;"></span>
+				<span style="--i:12;"></span>
+				<span style="--i:13;"></span>
+				<span style="--i:14;"></span>
+				<span style="--i:15;"></span>
+				<span style="--i:16;"></span>
+				<span style="--i:17;"></span>
+				<span style="--i:18;"></span>
+				<span style="--i:19;"></span>
+				<span style="--i:20;"></span>
+			</div>
+		</div>
+	</section>
 </body>
 </html>
