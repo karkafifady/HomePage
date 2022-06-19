@@ -82,7 +82,7 @@ function accelerationHandler(acceleration, targetId) {
   info = info.replace("Y", acceleration.y && acceleration.y.toFixed(3));
   info = info.replace("Z", acceleration.z && acceleration.z.toFixed(3));
   document.getElementById(targetId).innerHTML = info;
-  var average_acceleration = Math.sqrt(acceleration.x.toFixed(3)*acceleration.x.toFixed(3)+acceleration.y.toFixed(3)*acceleration.y.toFixed(3)+acceleration.z.toFixed(3)*acceleration.z.toFixed(3))
+  var average_acceleration = Math.sqrt(acceleration.x*acceleration.x+acceleration.y*acceleration.y+acceleration.z*acceleration.z)
   document.getElementById(targetId).innerHTML = info;
   document.getElementById("averAccel").innerHTML = average_acceleration;
 }
