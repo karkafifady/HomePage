@@ -9,9 +9,15 @@ if (window.DeviceMotionEvent) {
     window.addEventListener('devicemotion', function(eventData) {   
         var output=document.getElementById("output");
 	  var properties="";
-	  for(var prop in eventData){
-		properties+=prop+": "+eventData[prop]+"<br>";
-	  }
+	  properties=eventData.acceleration.x+"<br>";
+	  properties=properties+eventData.acceleration.y+"<br>";
+	  properties=properties+eventData.acceleration.z+"<br>";
+	  properties=properties+eventData.accelerationIncludingGravity.x+"<br>";
+	  properties=properties+eventData.accelerationIncludingGravity.y+"<br>";
+	  properties=properties+eventData.accelerationIncludingGravity.z+"<br>";
+	  properties=properties+eventData.rotationRate.alpha+"<br>";
+	  properties=properties+eventData.rotationRate.beta+"<br>";
+	  properties=properties+eventData.rotationRate.gamma+"<br>";
 	  output.innerHTML=properties;
     }, false);
 }
