@@ -1,0 +1,22 @@
+<html>
+<head>
+<title>
+Accelerometer
+</title>
+<script>
+window.addEventListener('deviceorientation',handleOrientation);
+
+function handleOrientation(event){
+	var output=document.getElementById("output");
+	var properties="";
+	for(var prop in event){
+		properties+=prop+": "+event[prop]+"<br>";
+	}
+	output.innerHTML=properties;
+}
+</script>
+</head>
+<body>
+<div id="output"></div>
+</body>
+</html>
