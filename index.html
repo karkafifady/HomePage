@@ -14,6 +14,10 @@ Accelerometer
     <td id="moAccel"></td>
   </tr>
   <tr>
+    <td>average acceleration (excl. gravity)</td>
+    <td id="averAccel"></td>
+  </tr>
+  <tr>
     <td>acceleration incl. gravity</td>
     <td id="moAccelGrav"></td>
   </tr>
@@ -35,7 +39,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
     if (lastReadingTimestamp) {
-      intervalHandler(accelerometer.timestamp - lastReadingTimestamp);
+      intervalHandler(Math.round(accelerometer.timestamp - lastReadingTimestamp));
     }
     lastReadingTimestamp = accelerometer.timestamp
     accelerationHandler(accelerometer, 'moAccel');
@@ -74,10 +78,13 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
 function accelerationHandler(acceleration, targetId) {
   var info, xyz = "[X, Y, Z]";
 
-  info = xyz.replace("X", acceleration.x);
-  info = info.replace("Y", acceleration.y);
-  info = info.replace("Z", acceleration.z);
+  info = xyz.replace("X", acceleration.x && acceleration.x.toFixed(3));
+  info = info.replace("Y", acceleration.y && acceleration.y.toFixed(3));
+  info = info.replace("Z", acceleration.z && acceleration.z.toFixed(3));
   document.getElementById(targetId).innerHTML = info;
+  var average_acceleration = Math.sqrt(acceleration.x.toFixed(3)*acceleration.x.toFixed(3)+acceleration.y.toFixed(3)*acceleration.y.toFixed(3)+acceleration.z.toFixed(3)*acceleration.z.toFixed(3))
+  document.getElementById(targetId).innerHTML = info;
+  document.getElementById("averAccel").innerHTML = average_acceleration;
 }
 
 function rotationHandler(rotation) {
