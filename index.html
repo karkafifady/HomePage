@@ -31,7 +31,7 @@ Accelerometer
   </tr>
   <tr>
     <td>Starting Time</td>
-    <td id="time_start">Math.floor(Date.now() / 1000)</td>
+    <td id="time_start"></td>
   </tr>
   <tr>
     <td>Downloaded</td>
@@ -42,6 +42,7 @@ Accelerometer
 
 if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   document.getElementById('moApi').innerHTML = 'Generic Sensor API';
+  document.getElementById("time_start").innerHTML = Math.floor(Date.now() / 1000);
   let lastAcc = 0;
   let acceleration = "";
   let time_init;
