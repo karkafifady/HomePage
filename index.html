@@ -64,7 +64,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     var average_acceleration = Math.sqrt(accelerometer.x*accelerometer.x+accelerometer.y*accelerometer.y+accelerometer.z*accelerometer.z)
     let new_acc = average_acceleration - lastAcc;
     document.getElementById("averAccel").innerHTML = new_acc;
-    acceleration = acceleration + new_acc + "<BR>";
+    acceleration = acceleration + new_acc + "---";
     lastAcc = average_acceleration;
     current_time = Math.floor(Date.now() / 1000);
     if (current_time-document.getElementById("time_start").innerHTML >= 60 && document.getElementById("Downloaded").innerHTML == "")
