@@ -39,6 +39,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   let acceleration = "";
   let time_init;
   let lastReadingTimestamp;
+  let downloaded = 0;
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
     if (lastReadingTimestamp) {
@@ -54,9 +55,10 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     document.getElementById("averAccel").innerHTML = new_acc;
     acceleration = acceleration + new_acc;
     lastAcc = average_acceleration;
-    if (lastReadingTimestamp-time_init > 2000)
+    if (lastReadingTimestamp-time_init > 2000 && downloaded == 0)
     {
-      download(acceleration, 'json.txt', 'text/plain');
+      download(acceleration, 'Signal.txt', 'text/plain');
+      downloaded = 1;
     }
   });
   accelerometer.start();
