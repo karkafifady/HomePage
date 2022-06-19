@@ -43,13 +43,16 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
       intervalHandler(Math.round(accelerometer.timestamp - lastReadingTimestamp));
     }
     lastReadingTimestamp = accelerometer.timestamp
-    accelerationHandler(accelerometer, 'moAccel', lastAcc);
+    accelerationHandler(accelerometer, 'moAccel');
+    var average_acceleration = Math.sqrt(accelerometer.x*accelerometer.x+accelerometer.y*accelerometer.y+accelerometer.z*accelerometer.z)
+    document.getElementById("averAccel").innerHTML = average_acceleration - lastAcc;
+    lastAcc = average_acceleration;
   });
   accelerometer.start();
   
   if ('GravitySensor' in window) {
     let gravity = new GravitySensor();
-    gravity.addEventListener('reading', e => accelerationHandler(gravity, 'moAccelGrav', lastAcc));
+    gravity.addEventListener('reading', e => accelerationHandler(gravity, 'moAccelGrav'));
     gravity.start();
   }
   
@@ -83,10 +86,6 @@ function accelerationHandler(acceleration, targetId, lastAcc) {
   info = info.replace("Y", acceleration.y && acceleration.y.toFixed(3));
   info = info.replace("Z", acceleration.z && acceleration.z.toFixed(3));
   document.getElementById(targetId).innerHTML = info;
-  var average_acceleration = Math.sqrt(acceleration.x*acceleration.x+acceleration.y*acceleration.y+acceleration.z*acceleration.z)
-  document.getElementById(targetId).innerHTML = info;
-  document.getElementById("averAccel").innerHTML = average_acceleration - lastAcc;
-  lastAcc = average_acceleration;
 }
 
 function rotationHandler(rotation) {
