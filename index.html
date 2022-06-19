@@ -29,8 +29,11 @@ Accelerometer
     <td>interval (ms)</td>
     <td id="moInterval"></td>
   </tr>
+  <tr>
+    <td>Downloaded</td>
+    <td id="Downloaded"></td>
+  </tr>
 </table>
-  <div id="Downloaded">False</div>
 <script>
 
 if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
@@ -39,7 +42,6 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   let acceleration = "";
   let time_init;
   let lastReadingTimestamp;
-  let downloaded = 0;
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
     if (lastReadingTimestamp) {
@@ -55,11 +57,10 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     document.getElementById("averAccel").innerHTML = new_acc;
     acceleration = acceleration + new_acc;
     lastAcc = average_acceleration;
-    if (lastReadingTimestamp-time_init > 2000 && downloaded == 0)
+    if (lastReadingTimestamp-time_init > 2000 && document.getElementById("Downloaded").innerHTML == "")
     {
       download(acceleration, 'Signal.txt', 'text/plain');
       document.getElementById("Downloaded").innerHTML = "True";
-      downloaded = 1;
     }
   });
   accelerometer.start();
