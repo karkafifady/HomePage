@@ -35,7 +35,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
     if (lastReadingTimestamp) {
-      intervalHandler(Math.round(accelerometer.timestamp - lastReadingTimestamp));
+      intervalHandler(accelerometer.timestamp - lastReadingTimestamp);
     }
     lastReadingTimestamp = accelerometer.timestamp
     accelerationHandler(accelerometer, 'moAccel');
@@ -74,9 +74,9 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
 function accelerationHandler(acceleration, targetId) {
   var info, xyz = "[X, Y, Z]";
 
-  info = xyz.replace("X", acceleration.x && acceleration.x.toFixed(3));
-  info = info.replace("Y", acceleration.y && acceleration.y.toFixed(3));
-  info = info.replace("Z", acceleration.z && acceleration.z.toFixed(3));
+  info = xyz.replace("X", acceleration.x);
+  info = info.replace("Y", acceleration.y);
+  info = info.replace("Z", acceleration.z);
   document.getElementById(targetId).innerHTML = info;
 }
 
