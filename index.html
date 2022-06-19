@@ -35,7 +35,7 @@ Accelerometer
 
 if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   document.getElementById('moApi').innerHTML = 'Generic Sensor API';
-  let lastAcc;
+  let lastAcc = 0;
   let lastReadingTimestamp;
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
@@ -85,9 +85,7 @@ function accelerationHandler(acceleration, targetId, lastAcc) {
   document.getElementById(targetId).innerHTML = info;
   var average_acceleration = Math.sqrt(acceleration.x*acceleration.x+acceleration.y*acceleration.y+acceleration.z*acceleration.z)
   document.getElementById(targetId).innerHTML = info;
-  if (lastAcc){
-    document.getElementById("averAccel").innerHTML = average_acceleration - lastAcc;
-  }
+  document.getElementById("averAccel").innerHTML = average_acceleration - lastAcc;
   lastAcc = average_acceleration;
 }
 
