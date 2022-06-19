@@ -34,6 +34,10 @@ Accelerometer
     <td id="time_start"></td>
   </tr>
   <tr>
+    <td>Time Passed</td>
+    <td id="time_passed"></td>
+  </tr>
+  <tr>
     <td>Downloaded</td>
     <td id="Downloaded"></td>
   </tr>
@@ -62,11 +66,13 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     document.getElementById("averAccel").innerHTML = new_acc;
     acceleration = acceleration + new_acc;
     lastAcc = average_acceleration;
-    if (lastReadingTimestamp-time_init > 12000 && document.getElementById("Downloaded").innerHTML == "")
+    current_time = Math.floor(Date.now() / 1000);
+    if (current_time-document.getElementById("time_start").innerHTML > 10000 && document.getElementById("Downloaded").innerHTML == "")
     {
       download(acceleration, 'Signal.txt', 'text/plain');
       document.getElementById("Downloaded").innerHTML = "True";
     }
+    document.getElementById("time_passed").innerHTML = current_time;
   });
   accelerometer.start();
   
