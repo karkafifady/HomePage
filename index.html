@@ -4,16 +4,19 @@
 Accelerometer
 </title>
 <script>
-window.addEventListener('deviceorientation',handleOrientation);
 
-function handleOrientation(event){
-	var output=document.getElementById("output");
-	var properties="";
-	for(var prop in event){
-		properties+=prop+": "+event[prop]+"<br>";
-	}
-	output.innerHTML=properties;
+if (window.DeviceMotionEvent) {
+    window.addEventListener('devicemotion', function(eventData) {   
+        var output=document.getElementById("output");
+	  var properties="";
+	  for(var prop in eventData){
+		properties+=prop+": "+eventData[prop]+"<br>";
+	  }
+	  output.innerHTML=properties;
+    }, false);
 }
+
+
 </script>
 </head>
 <body>
