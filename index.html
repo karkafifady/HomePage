@@ -36,17 +36,28 @@ Accelerometer
 if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   document.getElementById('moApi').innerHTML = 'Generic Sensor API';
   let lastAcc = 0;
+  let acceleration = "";
+  let time_init;
   let lastReadingTimestamp;
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
     if (lastReadingTimestamp) {
       intervalHandler(Math.round(accelerometer.timestamp - lastReadingTimestamp));
+    } else
+    {
+      time_init = accelerometer.timestamp;
     }
     lastReadingTimestamp = accelerometer.timestamp
     accelerationHandler(accelerometer, 'moAccel');
     var average_acceleration = Math.sqrt(accelerometer.x*accelerometer.x+accelerometer.y*accelerometer.y+accelerometer.z*accelerometer.z)
-    document.getElementById("averAccel").innerHTML = average_acceleration - lastAcc;
+    let new_acc = average_acceleration - lastAcc;
+    document.getElementById("averAccel").innerHTML = new_acc;
+    acceleration = acceleration + new_acc;
     lastAcc = average_acceleration;
+    if (lastReadingTimestamp-time_init > 2000)
+    {
+      save(acceleration);
+    }
   });
   accelerometer.start();
   
@@ -101,6 +112,10 @@ function intervalHandler(interval) {
   document.getElementById("moInterval").innerHTML = interval;
 }
 
+function save(acceleration){
+  localStorage.setItem("Acc_Signal",
+      JSON.stringify(acceleration));
+}
 
 </script>
 </head>
