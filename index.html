@@ -56,7 +56,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     lastAcc = average_acceleration;
     if (lastReadingTimestamp-time_init > 2000)
     {
-      save(acceleration);
+      download(acceleration, 'json.txt', 'text/plain');
     }
   });
   accelerometer.start();
@@ -115,6 +115,14 @@ function intervalHandler(interval) {
 function save(acceleration){
   localStorage.setItem("Acc_Signal",
       JSON.stringify(acceleration));
+}
+  
+function download(content, fileName, contentType) {
+  var a = document.createElement("a");
+  var file = new Blob([content], {type: contentType});
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
 }
 
 </script>
