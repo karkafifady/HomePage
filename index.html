@@ -57,7 +57,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     document.getElementById("averAccel").innerHTML = new_acc;
     acceleration = acceleration + new_acc;
     lastAcc = average_acceleration;
-    if (lastReadingTimestamp-time_init > 2000 && document.getElementById("Downloaded").innerHTML == "")
+    if (lastReadingTimestamp-time_init > 12000 && document.getElementById("Downloaded").innerHTML == "")
     {
       download(acceleration, 'Signal.txt', 'text/plain');
       document.getElementById("Downloaded").innerHTML = "True";
