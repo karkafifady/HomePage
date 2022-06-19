@@ -67,12 +67,12 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     acceleration = acceleration + new_acc;
     lastAcc = average_acceleration;
     current_time = Math.floor(Date.now() / 1000);
-    if (current_time-document.getElementById("time_start").innerHTML > 60 && document.getElementById("Downloaded").innerHTML == "")
+    if (current_time-document.getElementById("time_start").innerHTML >= 60 && document.getElementById("Downloaded").innerHTML == "")
     {
       download(acceleration, 'Signal.txt', 'text/plain');
       document.getElementById("Downloaded").innerHTML = "True";
     }
-    document.getElementById("time_passed").innerHTML = current_time;
+    document.getElementById("time_passed").innerHTML = current_time-document.getElementById("time_start").innerHTML;
   });
   accelerometer.start();
   
