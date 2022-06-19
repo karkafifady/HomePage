@@ -43,7 +43,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
       intervalHandler(Math.round(accelerometer.timestamp - lastReadingTimestamp));
     }
     lastReadingTimestamp = accelerometer.timestamp
-    accelerationHandler(accelerometer, 'moAccel');
+    accelerationHandler(accelerometer, 'moAccel', lastAcc);
   });
   accelerometer.start();
   
@@ -76,7 +76,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   document.getElementById('moApi').innerHTML = 'No Accelerometer & Gyroscope API available';
 }
 
-function accelerationHandler(acceleration, targetId) {
+function accelerationHandler(acceleration, targetId, lastAcc) {
   var info, xyz = "[X, Y, Z]";
 
   info = xyz.replace("X", acceleration.x && acceleration.x.toFixed(3));
