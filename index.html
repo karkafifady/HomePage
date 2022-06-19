@@ -3,11 +3,34 @@
 <title>
 Accelerometer
 </title>
+
+<table>
+  <tr>
+    <td>API used</td>
+    <td id="moApi"></td>
+  </tr>
+  <tr>
+    <td>linear acceleration (excl. gravity)</td>
+    <td id="moAccel"></td>
+  </tr>
+  <tr>
+    <td>acceleration incl. gravity</td>
+    <td id="moAccelGrav"></td>
+  </tr>
+  <tr>
+    <td>rotation rate</td>
+    <td id="moRotation"></td>
+  </tr>
+  <tr>
+    <td>interval (ms)</td>
+    <td id="moInterval"></td>
+  </tr>
+</table>
+
 <script>
 
-
 if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
-  
+  document.getElementById('moApi').innerHTML = 'Generic Sensor API';
   let lastReadingTimestamp;
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
@@ -74,6 +97,6 @@ function intervalHandler(interval) {
 </script>
 </head>
 <body>
-<div id="output"></div>
+
 </body>
 </html>
