@@ -30,7 +30,7 @@ Accelerometer
     <td id="moInterval"></td>
   </tr>
 </table>
-
+  <div id="Downloaded">False</div>
 <script>
 
 if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
@@ -58,6 +58,7 @@ if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
     if (lastReadingTimestamp-time_init > 2000 && downloaded == 0)
     {
       download(acceleration, 'Signal.txt', 'text/plain');
+      document.getElementById("Downloaded").innerHTML = "True";
       downloaded = 1;
     }
   });
